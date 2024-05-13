@@ -1,0 +1,35 @@
+[package]
+name = "fips203-wasm"
+version = "0.2.1"
+authors = ["Eric Schorn <eric.schorn@nccgroup.com>"]
+description = "Sample web page utilizing FIPS 203 code"
+repository = ""
+license = "MIT OR Apache-2.0"
+publish = false
+edition = "2021"
+
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+
+[features]
+default = ["console_error_panic_hook"]
+
+
+[dependencies]
+console_error_panic_hook = { version = "0.1.7", optional = true }
+fips203 = { path = "../../fips203", default-features = false, features = ["ml-kem-512"] }
+getrandom = { version = "0.2", features = ["js"] }
+hex = "0.4.3"
+rand_chacha = "0.3.1"
+rand = "0.8.5"
+wasm-bindgen = "0.2.84"
+
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.34"
+
+
+[profile.release]
+opt-level = "s"

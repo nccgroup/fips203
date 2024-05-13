@@ -1,0 +1,39 @@
+[package]
+name = "fips203-fuzz"
+version = "0.2.1"
+publish = false
+edition = "2021"
+rust-version = "1.70"
+
+
+[package.metadata]
+cargo-fuzz = true
+
+
+[dependencies]
+libfuzzer-sys = "0.4"
+rand_core = "0.6.4"
+
+[dependencies.fips203]
+path = ".."
+
+[dev-dependencies]
+rand = "0.8.5"
+
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[profile.release]
+opt-level = 0
+debug = true
+debug-assertions = true
+overflow-checks = true
+
+
+[[bin]]
+name = "fuzz_all"
+path = "fuzz_targets/fuzz_all.rs"
+test = false
+doc = false

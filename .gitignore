@@ -1,0 +1,9 @@
+/.idea
+**/Cargo.lock
+**/artifacts
+**/corpus
+**/coverate
+**/target
+**/pkg
+**/node_modules
+**/package-lock.json
